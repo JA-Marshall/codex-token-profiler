@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-token-profiler"
+version = "0.1.0"
+description = "Private, read-only Codex history accounting"
+requires-python = ">=3.12"
+dependencies = ["Flask==3.1.2", "waitress==3.0.2", "tzdata==2025.2"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "psutil==7.0.0"]
+tokenizer = ["tiktoken==0.11.0"]
+
+[project.scripts]
+codex-token-profiler = "codex_token_profiler.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+codex_token_profiler = ["templates/*", "static/*", "migrations/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
